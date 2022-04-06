@@ -8,8 +8,6 @@ public class Player {
         this.playerNo = playerNo;
     }
 
-
-
     public String getPlayerName() {
         return playerName;
     }
