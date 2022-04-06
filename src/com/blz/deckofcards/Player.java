@@ -7,7 +7,6 @@ public class Player {
         this.playerName = playerName;
         this.playerNo = playerNo;
     }
-
     public String getPlayerName() {
         return playerName;
     }
