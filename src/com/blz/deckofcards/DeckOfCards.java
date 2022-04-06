@@ -1,4 +1,5 @@
 package com.blz.deckofcards;
+
 import java.util.*;
 
 public class DeckOfCards {
@@ -10,6 +11,12 @@ public class DeckOfCards {
     static String[][] playerCardStrings = new String[4][9];
     static Map<String, Integer> map = new HashMap<>();
 
+    /*
+     * @purpose : Ability to Arrange Deck of cards uniquely
+     * @param : No parameters
+     * @function : Merging suit and rank to get unique deckofcards
+     * @return : No return Value;
+     */
     public void getUniqueCards() {
         int index = 0;// intialising deck index to zero
         for (int i = 0; i < suit.length; i++) {
@@ -20,6 +27,12 @@ public class DeckOfCards {
         }
     }
 
+    /*
+     * @purpose : Ability to print array
+     * @param : String array
+     * @function : Starts from index 0 of array and prints upto last indecies
+     * @return : No return Value;
+     */
     public void printArray(String[] arr) {
         for (int i = 0; i < arr.length; i++) {
             System.out.println(arr[i]);
@@ -27,6 +40,12 @@ public class DeckOfCards {
         System.out.println();
     }
 
+    /*
+     * @purpose : Ability to set player order
+     * @param : No parameters
+     * @function : Check for Number of players to play the game
+     * @return : returns number of players;
+     */
     public int numOfPlayers() {
         System.out.println("Enter the number of players,range must be from 2 to 4");
         int playerCount = scanner.nextInt();
@@ -47,6 +66,12 @@ public class DeckOfCards {
         return playerCount;
     }
 
+    /*
+     * @purpose : Ability to show sequence of players
+     * @param : num players playing the game
+     * @function : prints player name and order
+     * @return : No return Value;
+     */
     public void seqOfPlayer(int playerCount) {
         System.out.println("\nSequence of cards are below : ");
         for (int i = 0; i < playerCount; i++) {
@@ -55,6 +80,12 @@ public class DeckOfCards {
         }
     }
 
+    /*
+     * @purpose : Ability to shuffle the cards
+     * @param : No parameters
+     * @function : Shuffle the organised deck of cards
+     * @return : No return Value;
+     */
     public void shuffleCards() {
         Random random = new Random();
         for (int i = 0; i < deckOfCard.length; i++) {
@@ -65,6 +96,12 @@ public class DeckOfCards {
         }
     }
 
+    /*
+     * @purpose : Ability to distribute cards
+     * @param : player count
+     * @function : Distributing the cards to each player
+     * @return : No return Value;
+     */
     public void cardDistribution(int playerCount) {
         int index = 0;
         for (int i = 0; i < playerCount; i++) {
@@ -76,7 +113,12 @@ public class DeckOfCards {
             System.out.println();
         }
     }
-
+    /*
+     * @purpose : Ability to verify cards
+     * @param : player count
+     * @function : Verifying the types of cards at each player
+     * @return : No return Value;
+     */
     public void verifyCards(int playerCount) {
         int clubsCount = 0;
         int dimondsCount = 0;
@@ -113,6 +155,22 @@ public class DeckOfCards {
         System.out.println();
     }
 
+    /*
+     * @purpose : Ability to display cards
+     * @param : player count
+     * @function : Verifying the types of cards at each player
+     * @return : No return Value;
+     */
+    public void displayCards(int playerCount) {
+        for (int i = 0; i < playerCount; i++) {
+            System.out.println("player " + (i + 1) + " has ");
+            for (int j = 0; j < playerCardStrings[i].length; j++) {
+                System.out.println(playerCardStrings[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("Welcome to deck of cards simulation");
         DeckOfCards deckOfCards = new DeckOfCards();
@@ -125,5 +183,6 @@ public class DeckOfCards {
         System.out.println(playerList);
         deckOfCards.cardDistribution(playerCount);
         deckOfCards.verifyCards(playerCount);
+        deckOfCards.displayCards(playerCount);
     }
 }
