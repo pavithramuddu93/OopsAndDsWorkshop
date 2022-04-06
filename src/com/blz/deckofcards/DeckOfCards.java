@@ -1,7 +1,5 @@
 package com.blz.deckofcards;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class DeckOfCards {
     public static String[] suit = {"Clubs", "Diamonds", "Hearts", "Spades"};
@@ -10,6 +8,7 @@ public class DeckOfCards {
     public static Scanner scanner = new Scanner(System.in);
     public static ArrayList<Player> playerList = new ArrayList<>();
     static String[][] playerCardStrings = new String[4][9];
+    static Map<String, Integer> map = new HashMap<>();
 
     public void getUniqueCards() {
         int index = 0;// intialising deck index to zero
@@ -78,6 +77,42 @@ public class DeckOfCards {
         }
     }
 
+    public void verifyCards(int playerCount) {
+        int clubsCount = 0;
+        int dimondsCount = 0;
+        int heartsCount = 0;
+        int spadesCounts = 0;
+        char ch;
+        for (int i = 0; i < playerCount; i++) {
+            for (int j = 0; j < playerCardStrings[i].length; j++) {
+                for (int k = j + 1; k < playerCardStrings[i].length; k++) {
+                    if (playerCardStrings[i][j].compareTo(playerCardStrings[i][k]) == 0) {
+                        System.out.println("player" + (i + 1) + " didnot get unique cards");
+                        return;
+                    }
+                }
+                ch = playerCardStrings[i][j].charAt(0);
+                if (ch == 'C')
+                    clubsCount++;
+                if (ch == 'D')
+                    dimondsCount++;
+                if (ch == 'H')
+                    heartsCount++;
+                if (ch == 'S')
+                    spadesCounts++;
+            }
+            map.put("Clubs", clubsCount);
+            map.put("Dimonds", dimondsCount);
+            map.put("Hearts", heartsCount);
+            map.put("spade", spadesCounts);
+
+            System.out.println("player" + (i + 1) + "");
+            System.out.println(map);
+            clubsCount = dimondsCount = heartsCount = spadesCounts = 0;
+        }
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         System.out.println("Welcome to deck of cards simulation");
         DeckOfCards deckOfCards = new DeckOfCards();
@@ -86,8 +121,9 @@ public class DeckOfCards {
         deckOfCards.printArray(deckOfCard);
         deckOfCards.shuffleCards();
         deckOfCards.printArray(deckOfCard);
-        deckOfCards.cardDistribution(deckOfCards.numOfPlayers());
+        int playerCount = deckOfCards.numOfPlayers();
         System.out.println(playerList);
-
+        deckOfCards.cardDistribution(playerCount);
+        deckOfCards.verifyCards(playerCount);
     }
 }
